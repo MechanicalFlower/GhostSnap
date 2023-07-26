@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://ct7nn2j3xwhgj"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1ged4"]
+size = Vector2(512, 512)
+
+[node name="RightTemplate" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 68.0
+offset_top = 68.0
+offset_right = -68.0
+offset_bottom = -68.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+autowrap_mode = 2
+
+[node name="Sapcer" type="Control" parent="."]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(512, 512)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_1ged4")
+stretch_mode = 2

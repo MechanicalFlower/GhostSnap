@@ -1,0 +1,176 @@
+[gd_scene load_steps=27 format=3 uid="uid://0tfu5doqi487"]
+
+[ext_resource type="PackedScene" uid="uid://td1qox1npqkp" path="res://scenes/gui/overlay.tscn" id="1_3vcva"]
+[ext_resource type="PackedScene" uid="uid://ykytet0bs66b" path="res://scenes/levels/base.tscn" id="2_ma7ey"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="3_uu757"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="4_5846o"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_along_edge_continuous.gd" id="5_h6v3i"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/offset_rotation.gd" id="6_8t7h4"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="7_dti45"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="8_wflwy"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="9_cldot"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="10_7wo5b"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="10_407p8"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="15_7gpqa"]
+
+[sub_resource type="Resource" id="Resource_htumo"]
+script = ExtResource("10_407p8")
+amount = 24
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_88tmy"]
+script = ExtResource("7_dti45")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 10.0
+ray_offset = 1.0
+remove_points_on_miss = true
+align_with_collision_normal = false
+max_slope = 90.0
+collision_mask = 1
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_h36wa"]
+script = ExtResource("4_5846o")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_htumo"), SubResource("Resource_88tmy")])
+
+[sub_resource type="Resource" id="Resource_fc588"]
+script = ExtResource("15_7gpqa")
+size = Vector3(35, 2, 35)
+
+[sub_resource type="Resource" id="Resource_d3kot"]
+script = ExtResource("5_h6v3i")
+item_length = 5.0
+ignore_slopes = false
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_3wlcd"]
+script = ExtResource("6_8t7h4")
+operation = 0
+rotation = Vector3(0, 90, 0)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_f6eta"]
+script = ExtResource("7_dti45")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 10.0
+ray_offset = 1.0
+remove_points_on_miss = true
+align_with_collision_normal = false
+max_slope = 90.0
+collision_mask = 1
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_e5myb"]
+script = ExtResource("4_5846o")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_d3kot"), SubResource("Resource_3wlcd"), SubResource("Resource_f6eta")])
+
+[sub_resource type="Curve3D" id="Curve3D_1rtgx"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -7.95367, 0, 11.9369, 0, 0, 0, 0, 0, 0, 7.91814, 0, 11.8752, 0, 0, 0, 0, 0, 0, 7.91814, 0, -0.167647, 0, 0, 0, 0, 0, 0, -1.83963, 0, -0.291163, 0, 0, 0, 0, 0, 0, -2.14842, 0, -13.0751, 0, 0, 0, 0, 0, 0, -14.006, 0, -13.1368, 0, 0, 0, 0, 0, 0, -14.253, 0, 1.62334, 0, 0, 0, 0, 0, 0, -8.01543, 0, 0.758724, 0, 0, 0, 0, 0, 0, -7.83016, 0, -7.1463),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 9
+
+[sub_resource type="Resource" id="Resource_wrtdf"]
+script = ExtResource("10_7wo5b")
+closed = false
+thickness = 0.0
+curve = SubResource("Curve3D_1rtgx")
+
+[sub_resource type="Curve3D" id="Curve3D_rbjqk"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -18.4657, 0, 7.00954, 0, 0, 0, 0, 0, 0, -8.01543, 0, 6.81101, 0, 0, 0, 0, 0, 0, -8.07719, 0, 0.88224),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_xi8ql"]
+script = ExtResource("10_7wo5b")
+closed = false
+thickness = 0.0
+curve = SubResource("Curve3D_rbjqk")
+
+[sub_resource type="Curve3D" id="Curve3D_sffne"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.72923, 0, 8.55349, 0, 0, 0, 0, 0, 0, 2.79222, 0, -11.8399, 0, 0, 0, 0, 0, 0, 8.02855, 0, -11.8267, 0, 0, 0, 0, 0, 0, 7.71975, 0, -4.90977, 0, 0, 0, 0, 0, 0, 13.3397, 0, -4.60098, 0, 0, 0, 0, 0, 0, 13.7103, 0, 13.5559),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[sub_resource type="Resource" id="Resource_pbxww"]
+script = ExtResource("10_7wo5b")
+closed = false
+thickness = 0.0
+curve = SubResource("Curve3D_sffne")
+
+[node name="Level2" type="Node3D"]
+
+[node name="Overlay" parent="." instance=ExtResource("1_3vcva")]
+level = 2
+
+[node name="Main" parent="." instance=ExtResource("2_ma7ey")]
+
+[node name="Ghosts" type="Node3D" parent="."]
+script = ExtResource("3_uu757")
+render_mode = 1
+modifier_stack = SubResource("Resource_h36wa")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="Ghost" type="Node3D" parent="Ghosts"]
+script = ExtResource("8_wflwy")
+path = "res://scenes/props/ghost.tscn"
+
+[node name="ScatterShape" type="Node3D" parent="Ghosts"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
+script = ExtResource("9_cldot")
+shape = SubResource("Resource_fc588")
+
+[node name="Hedges" type="Node3D" parent="."]
+script = ExtResource("3_uu757")
+render_mode = 1
+keep_static_colliders = true
+modifier_stack = SubResource("Resource_e5myb")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="ScatterItem" type="Node3D" parent="Hedges"]
+script = ExtResource("8_wflwy")
+path = "res://scenes/props/hedge.tscn"
+
+[node name="ScatterShape" type="Node3D" parent="Hedges"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
+script = ExtResource("9_cldot")
+shape = SubResource("Resource_wrtdf")
+
+[node name="ScatterShape2" type="Node3D" parent="Hedges"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
+script = ExtResource("9_cldot")
+shape = SubResource("Resource_xi8ql")
+
+[node name="ScatterShape3" type="Node3D" parent="Hedges"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
+script = ExtResource("9_cldot")
+shape = SubResource("Resource_pbxww")

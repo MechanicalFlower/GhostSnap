@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=3 uid="uid://ctkc7yqdqdtao"]
+
+[ext_resource type="Texture2D" uid="uid://betoh8jc76000" path="res://assets/textures/grass/grass_albedo.jpg" id="1_pvagl"]
+[ext_resource type="Texture2D" uid="uid://byl6e2j73t6k0" path="res://assets/textures/grass/grass_ao.jpg" id="2_tfgtc"]
+[ext_resource type="Texture2D" uid="uid://daxupkgohvtpb" path="res://assets/textures/grass/grass_normal.jpg" id="3_makwb"]
+[ext_resource type="Texture2D" uid="uid://b2bdmaddyrt38" path="res://assets/textures/grass/grass_roughness.jpg" id="4_6ebjm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_srxwf"]
+size = Vector3(500, 0.5, 500)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x5y1x"]
+albedo_texture = ExtResource("1_pvagl")
+metallic_specular = 0.0
+roughness_texture = ExtResource("4_6ebjm")
+normal_enabled = true
+normal_texture = ExtResource("3_makwb")
+ao_enabled = true
+ao_texture = ExtResource("2_tfgtc")
+uv1_scale = Vector3(100, 100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_li8ls"]
+size = Vector3(60, 0.5, 60)
+
+[node name="Floor" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_srxwf")
+surface_material_override/0 = SubResource("StandardMaterial3D_x5y1x")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["grass"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_li8ls")

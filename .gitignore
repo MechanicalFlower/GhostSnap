@@ -1,0 +1,19 @@
+# Godot-specific ignores
+.godot/
+.import/
+gfxrecon_capture_*
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Mono-specific ignores
+.mono/
+data_*/
+
+# gd-plug
+.plugged/
+addons/*
+!addons/gd-plug/
+
+# Python-specific ignores
+venv/

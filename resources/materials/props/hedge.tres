@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://d321wwbxok5l4"]
+
+[ext_resource type="Texture2D" uid="uid://dpjj3bj2s4wxn" path="res://assets/textures/props/hedge.png" id="1_pylo8"]
+
+[resource]
+resource_name = "textures"
+albedo_texture = ExtResource("1_pylo8")
+metallic = 1.0

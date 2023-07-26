@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg242"
+   width="720"
+   height="720"
+   viewBox="0 0 720 720"
+   sodipodi:docname="overlay_camera.jpg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs246" />
+  <sodipodi:namedview
+     id="namedview244"
+     pagecolor="#000000"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false" />
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Image"
+     id="g248">
+    <path
+       style="fill:#ffffff"
+       d="m 98.241388,567.83321 c 0.20176,-42.25901 0.533406,-54.25836 1.508612,-54.58333 0.98953,-0.32975 1.25,10.64463 1.25,52.66679 V 619 h 53.5 c 46.88889,0 53.5,0.18536 53.5,1.5 0,1.31515 -6.77873,1.5 -55.00861,1.5 H 97.982775 Z M 511.983,620.5 c 0,-1.31446 6.5546,-1.5 52.9912,-1.5 h 52.99111 l 0.25889,-52.6668 c 0.20183,-41.05881 0.53431,-52.7586 1.5088,-53.08333 0.98981,-0.32984 1.25,10.94464 1.25,54.1668 V 622 h -54.5 c -47.77779,0 -54.5,-0.18502 -54.5,-1.5 z M 98.241159,152.25 98.5,99.5 153.25,99.241461 C 201.50199,99.013607 208,99.161963 208,100.49146 208,101.81738 201.52348,102 154.5,102 H 101 v 51.5 c 0,45.24522 -0.18325,51.5 -1.508841,51.5 -1.329323,0 -1.478044,-6.27604 -1.25,-52.75 z M 617.983,153.5 V 102 h -53 c -46.44439,0 -53,-0.18553 -53,-1.5 0,-1.314985 6.72221,-1.5 54.5,-1.5 h 54.5 v 53 c 0,46.44444 -0.1855,53 -1.5,53 -1.3139,0 -1.5,-6.38889 -1.5,-51.5 z"
+       id="path362"
+       sodipodi:nodetypes="ssscssscssscssscssscssscsssscssscsss" />
+  </g>
+</svg>

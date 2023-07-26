@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3awehkmw4r3"]
+
+[ext_resource type="PackedScene" uid="uid://td1qox1npqkp" path="res://scenes/gui/overlay.tscn" id="1_3vcva"]
+[ext_resource type="PackedScene" uid="uid://ykytet0bs66b" path="res://scenes/levels/base.tscn" id="2_ma7ey"]
+[ext_resource type="Script" path="res://scripts/gui/healthbar.gd" id="2_osovg"]
+[ext_resource type="PackedScene" uid="uid://db0oqth3irk7w" path="res://scenes/props/boss_ghost.tscn" id="3_4ic14"]
+
+[node name="Level3" type="Node3D"]
+
+[node name="Overlay" parent="." instance=ExtResource("1_3vcva")]
+level = 3
+
+[node name="Main" parent="." instance=ExtResource("2_ma7ey")]
+
+[node name="Ghosts" parent="." instance=ExtResource("3_4ic14")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -16.5348, 1.52146, -6.8841)
+speed = 5
+
+[node name="Health" type="Node3D" parent="Ghosts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, 0)
+script = ExtResource("2_osovg")
+size = Vector3(1, 0.1, 0.1)
+billboard_mode = 1

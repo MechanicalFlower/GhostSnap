@@ -1,0 +1,130 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: GhostSnap
+Upstream-Contact: Florian Vazelle <florian.vazelle@vivaldi.net>
+Source: https://github.com/MechanicalFlower/GhostSnap
+
+Files: *
+Copyright: 2022-present Florian Vazelle
+License: MIT
+
+# Addons
+
+Files: addons/debug_menu/*
+Copyright: 2023-present Hugo Locurcio and contributors
+License: MIT
+Source: https://github.com/godot-extended-libraries/godot-debug-menu
+
+Files: addons/EasyMenus/*
+Copyright: 2022 Savo Vuksan
+License: MIT
+Source: https://github.com/SavoVuksan/EasyMenus
+
+Files: addons/gd-plug/*
+Copyright: 2021 Tan Jian Ping
+License: MIT
+Source: https://github.com/imjp94/gd-plug
+
+Files: addons/proton_scatter/*
+Copyright: 2020-present HungryProton
+License: MIT
+Source: https://github.com/HungryProton/scatter
+
+Files: addons/UniversalFade/*
+Copyright: 2019 Tomek
+License: MIT
+Source: https://github.com/KoBeWi/Godot-Universal-Fade
+
+# Models
+
+Files: assets/models/camera/*
+Copyright: 2018 Light Game Studio
+License: CC0-1.0
+Source: https://opengameart.org/content/dslr-camera-blender
+
+Files: assets/models/props/fence/*
+Copyright: 2021-2022 Elegant Crow
+License: CC0-1.0
+Source: https://elegantcrow.itch.io/retro-modular-hedge-maze
+
+Files: assets/models/props/hedge.fbx
+Copyright: 2021-2022 Elegant Crow
+License: CC0-1.0
+Source: https://elegantcrow.itch.io/retro-modular-hedge-maze
+
+Files: assets/models/props/halloween_decor.gltf
+Copyright: 2022 loafbrr
+License: CC0-1.0
+Source: https://loafbrr.itch.io/halloween-props
+
+Files: assets/models/car/*
+Copyright: 2021-2022 GGBotNet
+License: CC0-1.0
+Source: https://ggbot.itch.io/psx-style-cars
+
+# Textures
+
+Files: assets/icons/*
+Copyright: 2023 Icons8
+License: LicenseRef-linksware
+Source: https://icons8.com/
+
+Files: assets/textures/grass/*
+Copyright: 2017-2023 Lennart Demes
+License: CC0-1.0
+Source: https://ambientcg.com/view?id=Grass004
+
+Files: assets/textures/props/halloween_decor/*
+Copyright: 2022 loafbrr
+License: CC0-1.0
+Source: https://loafbrr.itch.io/halloween-props
+
+Files: assets/textures/props/fence.png
+Copyright: 2021-2022 Elegant Crow
+License: CC0-1.0
+Source: https://elegantcrow.itch.io/retro-modular-hedge-maze
+
+Files: assets/textures/props/hedge.png
+Copyright: 2021-2022 Elegant Crow
+License: CC0-1.0
+Source: https://elegantcrow.itch.io/retro-modular-hedge-maze
+
+Files: assets/textures/grid.png
+Copyright: 2020 Kenney
+License: CC0-1.0
+Source: https://www.kenney.nl/assets/prototype-textures
+
+Files: assets/textures/car.png
+Copyright: 2021-2022 GGBotNet
+License: CC0-1.0
+Source: https://ggbot.itch.io/psx-style-cars
+
+# Fonts
+
+Files: assets/fonts/mini-wakuwaku/*
+Copyright: 2018 miniyama
+License: LicenseRef-miniyama
+Source: http://mini-design.jp/font/mini-wakuwaku.html
+
+# Sounds
+
+Files: assets/sfx/camera.ogg
+Copyright: 2018 OwlishMedia
+License: CC0-1.0
+Source: https://opengameart.org/content/202-more-sound-effects
+
+Files: assets/music/ghosty.ogg
+Copyright: 2020 genaralskar
+License: CC-BY-4.0
+Source: https://opengameart.org/content/ghosty
+
+# Shaders
+
+Files: shaders/sky.gdshader
+Copyright: 2023 axilirate
+License: CC0-1.0
+Source: https://godotshaders.com/shader/stylized-sky-shader-with-clouds/
+
+Files: shaders/redacted.gdshader
+Copyright: 2022 BalaDeSilver
+License: CC0-1.0
+Source: https://godotshaders.com/shader/redacted/

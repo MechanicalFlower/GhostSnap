@@ -1,0 +1,14 @@
+Universal Multimedia License Agreement for Icons8 (https://icons8.com/license/)
+
+Websites
+Add a link to icons8.com on all pages using our content. If that's most pages, a link in your footer is fine.
+
+Desktop Apps
+macOS and Windows applications should have the link to https://icons8.com in the about section.
+
+Mobile Apps
+For smartphone apps, please add a link to https://icons8.com in the about section or settings.
+Also, please credit our work in your App Store or Google Play description (something like "Icons by Icons8" is fine).
+
+Open Source
+Established open-source projects could receive the icons for free. For you, we'll open-source the needed resources.

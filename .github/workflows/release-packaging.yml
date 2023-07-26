@@ -1,0 +1,70 @@
+
+name: Release Packaging
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  version: '1.4.0'
+  godot_version: '4.1'
+
+jobs:
+  release-packaging:
+    runs-on: ubuntu-20.04
+    container:
+      image: barichello/godot-ci:4.1
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: windows
+            output: GhostSnap.exe
+            preset: Windows Desktop
+
+          - platform: linux
+            output: GhostSnap.x86_64
+            preset: Linux/X11
+
+          - platform: web
+            output: index.html
+            preset: Web
+
+          - platform: mac
+            output: GhostSnap.zip
+            preset: macOS
+
+    name: ${{ matrix.preset }} Export
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Export GhostSnap
+        uses: ./.github/actions/export-game
+        with:
+          platform: ${{ matrix.platform }}
+          output: ${{ matrix.output }}
+          preset: ${{ matrix.preset }}
+          version: ${{ env.version }}
+          godot_version: ${{ env.godot_version }}
+
+      - name: Upload artifact
+        uses: ./.github/actions/upload-artifact
+        with:
+          name: GhostSnap-${{ matrix.platform }}-v${{ env.version }}
+          path: build/${{ matrix.platform }}
+
+      # Installing rsync is needed in order to deploy to GitHub Pages. Without it, the build will fail.
+      - name: Install rsync
+        if: ${{ matrix.platform == 'web' }}
+        run: |
+          apt-get update && apt-get install -y rsync
+
+      - name: Deploy to GitHub Pages
+        if: ${{ matrix.platform == 'web' }}
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages # The branch the action should deploy to.
+          folder: build/web # The folder the action should deploy.

@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b4dhul2ouh48a"]
+
+[ext_resource type="Shader" path="res://shaders/redacted.gdshader" id="1_m7nkk"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_m7nkk")
+shader_parameter/scroll_speed = Vector2(3, 5)
+shader_parameter/static_intensity = 0.25
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/tex_scale = 3.0

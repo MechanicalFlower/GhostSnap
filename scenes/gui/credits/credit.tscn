@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc6iuwi75fths"]
+
+[ext_resource type="Script" path="res://scripts/gui/credit.gd" id="1_swmln"]
+[ext_resource type="FontFile" uid="uid://bjdipt4qy1n1r" path="res://assets/fonts/mini-wakuwaku/mini-wakuwaku.otf" id="2_17ryk"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_swmln")
+speed = 50
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.168627, 0.168627, 0.168627, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="VBoxContainer" parent="Background/CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1016, 512)
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="Background/CenterContainer/Control"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 6
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("2_17ryk")
+theme_override_font_sizes/font_size = 45
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="Sapcer" type="Control" parent="Background/CenterContainer/Control"]
+clip_contents = true
+custom_minimum_size = Vector2(96, 68)
+layout_mode = 2

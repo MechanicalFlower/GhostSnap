@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdupkh0grwy27"]
+
+[ext_resource type="PackedScene" uid="uid://lqyku5wn2wo0" path="res://scenes/player/movement_controller.tscn" id="1_t1jcr"]
+[ext_resource type="PackedScene" uid="uid://b8drbos167vf8" path="res://scenes/player/head.tscn" id="2_41iu1"]
+[ext_resource type="Script" path="res://scripts/player/sprint.gd" id="3_bgqcu"]
+[ext_resource type="PackedScene" uid="uid://cym02calqk1r7" path="res://scenes/camera.tscn" id="4_nufyv"]
+[ext_resource type="Script" path="res://scripts/player/footsteep.gd" id="10_jo4mt"]
+
+[node name="Player" groups=["player"] instance=ExtResource("1_t1jcr")]
+collision_layer = 4
+collision_mask = 9
+
+[node name="Head" parent="." index="1" instance=ExtResource("2_41iu1")]
+
+[node name="Foot" type="RayCast3D" parent="Head" index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+target_position = Vector3(0, 0, -2)
+
+[node name="Camera2" parent="Head" index="2" instance=ExtResource("4_nufyv")]
+transform = Transform3D(1.08398, 0, 0, 0, 1.08398, 0, 0, 0, 1.08398, 0.169723, -0.388158, -0.704286)
+
+[node name="TextureRect" type="TextureRect" parent="Head" index="4"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Sprint" type="Node" parent="." index="2"]
+script = ExtResource("3_bgqcu")
+
+[node name="FootstepComponent" type="Node" parent="." index="3"]
+script = ExtResource("10_jo4mt")
+feet_path = NodePath("../Head/Foot")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="FootstepComponent" index="0"]
+bus = &"SFX"
