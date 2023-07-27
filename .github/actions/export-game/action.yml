@@ -39,7 +39,6 @@ runs:
     - name: Import Assets
       shell: bash
       run: |
-        sed -i 's/preload(.*svg")/null/g' ./addons/proton_scatter/plugin.gd
         timeout 60 godot --editor --headless || true
 
     - name: Build ${{ inputs.preset }}
