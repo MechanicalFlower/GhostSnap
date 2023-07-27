@@ -38,7 +38,7 @@ runs:
     - name: Import Assets
       shell: bash
       run: |
-        timeout 60 godot --editor --headless
+        timeout 60 godot --editor --headless || true
 
     - name: Build ${{ inputs.preset }}
       shell: bash
