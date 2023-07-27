@@ -39,6 +39,7 @@ runs:
       shell: bash
       run: |
         timeout 60 godot --editor --headless || true
+        git restore project.godot
 
     - name: Build ${{ inputs.preset }}
       shell: bash
