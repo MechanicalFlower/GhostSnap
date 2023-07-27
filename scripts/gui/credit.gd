@@ -77,7 +77,7 @@ func _ready():
 
 		node.add_child(spacer)
 
-	node.get_parent().global_position.y = get_viewport_rect().get_center().y * 3
+	node.get_parent().global_position.y = (credit_count * 512 + credit_count * 68) / 2
 
 
 func _process(delta: float):
