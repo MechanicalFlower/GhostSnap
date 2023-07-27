@@ -24,11 +24,11 @@ runs:
       with:
         version: ${{ inputs.version }}
 
-    - name: Setup Godot Templates
-      shell: bash
-      run: |
-        mkdir -v -p ~/.local/share/godot/export_templates
-        mv /root/.local/share/godot/export_templates/${{ inputs.godot_version }}.stable ~/.local/share/godot/export_templates/${{ inputs.godot_version }}.stable
+    - name: Setup Godot
+      uses: chickensoft-games/setup-godot@v1
+      with:
+        version: ${{ inputs.godot_version }}
+        use-dotnet: false
 
     - name: Install Addons
       shell: bash
@@ -38,11 +38,11 @@ runs:
     - name: Import Assets
       shell: bash
       run: |
-        godot --editor --quit --headless
+        godot --editor --quit --headless || true
 
     - name: Build ${{ inputs.preset }}
       shell: bash
       run: |
         [ -d build ] && rm -r build
-        mkdir -v -p build/${{ matrix.platform }}
-        godot --export-release "${{ inputs.preset }}" --headless ./build/${{ matrix.platform }}/${{ inputs.output }}
+        mkdir -v -p build/${{ inputs.platform }}
+        godot --export-release "${{ inputs.preset }}" --headless ./build/${{ inputs.platform }}/${{ inputs.output }}
