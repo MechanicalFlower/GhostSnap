@@ -21,6 +21,14 @@ Inspired by the Famicase [Ghost Hunter](https://famicase.com/23/softs/103.html) 
 - `Mouse` to move the camera around.
 - `ESC` to quit.
 
+### Screenshots
+
+<div align="center">
+
+<img src="public/publishing/screenshots/screenshot_menu.png" width="30%"> <img src="public/publishing/screenshots/screenshot_level1.png" width="30%"> <img src="public/publishing/screenshots/screenshot_zoom.png" width="30%"> <img src="public/publishing/screenshots/screenshot_level2.png" width="30%">
+
+</div>
+
 ## Contributing
 
 We welcome community contributions to this project.
