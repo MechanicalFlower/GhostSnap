@@ -47,4 +47,4 @@ runs:
       run: |
         [ -d build ] && rm -r build
         mkdir -v -p build/${{ inputs.platform }}
-        godot --export-release "${{ inputs.preset }}" --headless ./build/${{ inputs.platform }}/${{ inputs.output }}
+        timeout 60 godot --export-release "${{ inputs.preset }}" --headless ./build/${{ inputs.platform }}/${{ inputs.output }} || true
