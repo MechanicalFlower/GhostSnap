@@ -70,7 +70,7 @@ repos:
       - --style=file
       - -Werror
     language: system
-    files: \.shader$
+    files: \.gdshader$
     exclude: ^addons/
   - id: lint-gdscript
     name: lint gdscript
