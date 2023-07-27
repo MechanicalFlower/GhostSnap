@@ -38,7 +38,7 @@ runs:
     - name: Import Assets
       shell: bash
       run: |
-        godot --editor --headless & sleep 5 && ./monitor-import.sh
+        timout 60 godot --editor --headless
 
     - name: Build ${{ inputs.preset }}
       shell: bash
