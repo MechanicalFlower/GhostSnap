@@ -1,6 +1,6 @@
-extends MeshInstance3D
+extends Node3D
 
-var Redacted: ShaderMaterial = load("res://resources/materials/camera/redacted.tres")
+@onready var screen = get_node("../ViewportQuad")
 
 
 func _ready():
@@ -8,7 +8,7 @@ func _ready():
 
 
 func redacted(state: bool):
-	if state:
-		set_material_override(Redacted)
-	else:
-		set_material_override(null)
+	visible = state
+	
+	# hack
+	screen.position.x = -0.5

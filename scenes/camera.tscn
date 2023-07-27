@@ -1,8 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://cym02calqk1r7"]
+[gd_scene load_steps=26 format=3 uid="uid://cym02calqk1r7"]
 
 [ext_resource type="Script" path="res://scripts/camera/camera.gd" id="1_nihp3"]
+[ext_resource type="Script" path="res://scripts/camera/camera_screen.gd" id="2_ed57b"]
 [ext_resource type="AudioStream" uid="uid://dyvr2dajq30gu" path="res://assets/sfx/camera.ogg" id="2_i4x15"]
 [ext_resource type="Texture2D" uid="uid://bnmbghqv4n0b3" path="res://assets/textures/overlay_camera.svg" id="2_mcgta"]
+[ext_resource type="Material" uid="uid://b4dhul2ouh48a" path="res://resources/materials/camera/redacted.tres" id="4_ynph3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xmv3h"]
 size = Vector3(3, 5, 3)
@@ -45,6 +47,8 @@ shadow_mesh = SubResource("ArrayMesh_g58jw")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_e0e3n"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n7nfb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4paed"]
 resource_name = "Material.003"
@@ -240,13 +244,27 @@ mesh = SubResource("ArrayMesh_50xpk")
 skeleton = NodePath("")
 
 [node name="ViewportQuad" type="Sprite3D" parent="CameraMatrix"]
-transform = Transform3D(-2.18557e-08, 2.0117e-21, 0.5, 3.02923e-28, 0.5, -2.0117e-21, -0.5, 2.52435e-29, -2.18557e-08, -1.05142, 1.62347, -1.96308)
+transform = Transform3D(-2.18557e-08, 2.64698e-21, 0.5, 3.66031e-28, 0.5, -2.64698e-21, -0.5, 3.15544e-29, -2.18557e-08, -1.05142, 1.62347, -1.96308)
 layers = 4
 flip_h = true
 texture = SubResource("ViewportTexture_e0e3n")
 
 [node name="Overlay" type="Sprite3D" parent="CameraMatrix/ViewportQuad"]
-transform = Transform3D(0.8, 0, 1.42109e-14, 5.04871e-29, 0.8, -8.47033e-22, -1.42109e-14, 8.47033e-22, 0.8, 0, 0, -0.1)
+transform = Transform3D(0.8, 2.52435e-29, 1.42109e-14, 5.04871e-29, 0.8, -8.47033e-22, -1.42109e-14, 8.47033e-22, 0.8, 0, 0, -0.1)
+layers = 4
+texture = ExtResource("2_mcgta")
+
+[node name="Redacted" type="MeshInstance3D" parent="CameraMatrix"]
+transform = Transform3D(9.43724e-08, 1.25, -5.46392e-08, 0, -5.46392e-08, -1.25, -1.25, 9.43724e-08, -4.12515e-15, -1.05142, 1.62347, -1.96308)
+visible = false
+layers = 4
+material_override = ExtResource("4_ynph3")
+mesh = SubResource("PlaneMesh_n7nfb")
+surface_material_override/0 = ExtResource("4_ynph3")
+script = ExtResource("2_ed57b")
+
+[node name="Overlay2" type="Sprite3D" parent="CameraMatrix/Redacted"]
+transform = Transform3D(0.32, -3.16255e-23, 3.8147e-08, -3.8147e-08, -1.39876e-08, 0.32, 1.66746e-15, -0.32, -1.39876e-08, 0, -0.04, 0)
 layers = 4
 texture = ExtResource("2_mcgta")
 
