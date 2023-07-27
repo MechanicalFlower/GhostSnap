@@ -21,20 +21,20 @@ varying float height;
 
 void vertex() {
 	height = VERTEX.y;
-	
+
 	vec4 world_pos = MODEL_MATRIX * vec4(VERTEX, 1.0);
 	vec2 uv = (world_pos.xz + VERTEX.yy) / (noise_scale + 1e-2) ;
 	vec2 panning_uv = uv + fract(TIME * wind_direction * wind_speed);
 	float wind = texture(texture_noise, panning_uv).r * 2.0 - 0.4;
 	color = texture(texture_noise, uv).r;
-	
+
 	float wind_influence = smoothstep(0, 1, 1.0 - UV.y);
 	vec2 wind_offset = -wind_direction * wind_strength * wind_influence * wind;
 	world_pos.xz += wind_offset;
 	world_pos.y -= wind * wind_influence * wind_strength * 0.45;
-	
+
 	vec4 local_pos = inverse(MODEL_MATRIX) * world_pos;
-	
+
 	VERTEX = local_pos.xyz;
 	//NORMAL = vec3(0.0, 1.0, 0.0);
 }
@@ -44,7 +44,7 @@ void fragment() {
 	if (tex.a < alpha_scissor_threshold) {
 		discard;
 	}
-	
+
 	BACKLIGHT = transmission.rgb;
 	vec4 gradient = texture(texture_gradient, vec2(height / total_height, 0.0));
 	ALBEDO = tex.rbg * gradient.rgb;

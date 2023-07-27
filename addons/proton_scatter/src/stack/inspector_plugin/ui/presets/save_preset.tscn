@@ -48,7 +48,7 @@ modulate = Color( 1, 0.513726, 0.278431, 1 )
 margin_right = 312.0
 margin_bottom = 48.0
 text = "Preset name must be a valid file name.
-It cannot contain the following characters: 
+It cannot contain the following characters:
 : / \\\\ ? * \" | % < >"
 valign = 2
 autowrap = true

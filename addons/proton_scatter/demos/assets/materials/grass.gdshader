@@ -31,19 +31,19 @@ void vertex() {
 	vec2 panning_uv = uv + fract(TIME * wind_direction * wind_speed);
 	float wind = texture(texture_noise, panning_uv).r * 2.0 - 0.4;
 	color = texture(texture_noise, uv).r;
-	
+
 	vec2 wind_offset = -wind_direction * wind_strength * influence * wind;
 	world_pos.xz += wind_offset;
 	world_pos.y -= wind * influence * smoothstep(0.0, height, wind_strength);
-	
+
 	//Push the top vertex away from the camera to bend the grass clump
 	float ndotv = 1.0 - dot(vec3(0.0, 1.0, 0.0), normalize(INV_VIEW_MATRIX[1].xyz));
 	world_pos.xz += INV_VIEW_MATRIX[1].xz * camera_bend_strength * height * ndotv;
-	
+
 	vec4 local_pos = inverse(MODEL_MATRIX) * world_pos;
 	local_pos.x += wind_strength * influence * cos(TIME * 1.0) / 8.0;
 	local_pos.z += wind_strength * influence * sin(TIME * 1.5) / 8.0;
-	
+
 	VERTEX = local_pos.xyz;
 	//NORMAL = vec3(0.0, 1.0, 0.0);
 }
@@ -53,7 +53,7 @@ void fragment() {
 	if (tex.a < alpha_scissor_threshold) {
 		discard;
 	}
-	
+
 	BACKLIGHT = transmission.rgb;
 	vec4 gradient = texture(texture_gradient, vec2(height / grass_height, 0.0));
 	float secondary_weight = smoothstep(0.0, 1.0, color - secondary_attenuation);
