@@ -50,7 +50,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "Force rebuild.
 
-If the placed items does not look as expected, you can press this button to force it to regenerate the result. 
+If the placed items does not look as expected, you can press this button to force it to regenerate the result.
 
 Usually, you shouldn't have to use it so please report it on Github if you found a case where it's necessary to click this. "
 focus_mode = 0

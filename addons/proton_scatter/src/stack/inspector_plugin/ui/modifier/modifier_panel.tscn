@@ -135,7 +135,7 @@ layout_mode = 2
 [node name="DragControl" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "Drag and move this button to change the stack order. 
+tooltip_text = "Drag and move this button to change the stack order.
 
 Modifiers are processed from top to bottom."
 mouse_default_cursor_shape = 6

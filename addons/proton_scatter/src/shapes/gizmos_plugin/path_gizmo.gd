@@ -353,4 +353,3 @@ func _intersect_with(path: ProtonScatterShape, camera: Camera3D, screen_point: V
 		return res
 
 	return origin
-

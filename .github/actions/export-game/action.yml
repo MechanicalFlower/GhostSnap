@@ -34,7 +34,7 @@ runs:
       shell: bash
       run: |
         [ -f plug.gd ] && godot --headless -s plug.gd install || true
-    
+
     # workaround: https://github.com/godotengine/godot/pull/68461
     - name: Import Assets
       shell: bash

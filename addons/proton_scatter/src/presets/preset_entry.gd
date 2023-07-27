@@ -24,4 +24,3 @@ func show_save_controls() -> void:
 func show_load_controls() -> void:
 	$%SaveButtons.visible = false
 	$%LoadButtons.visible = true
-
