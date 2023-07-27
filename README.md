@@ -13,7 +13,7 @@ A snap minigame, made with [Godot Engine](https://godotengine.org/), for the [A 
 
 Ghost Snap is an open source mini-game about snapping ghosts.
 
-Inspired by the Famicase [Ghost Hunter](https://famicase.com/23/softs/103.html) by [Gabby DaRienzo](https://gabbydarienzo.com/).
+ > Inspired by the Famicase [Ghost Hunter](https://famicase.com/23/softs/103.html) by [Gabby DaRienzo](https://gabbydarienzo.com/).
 
 ### Controls
 
@@ -25,7 +25,7 @@ Inspired by the Famicase [Ghost Hunter](https://famicase.com/23/softs/103.html) 
 
 <div align="center">
 
-<img src="public/publishing/screenshots/screenshot_menu.png" width="30%"> <img src="public/publishing/screenshots/screenshot_level1.png" width="30%"> <img src="public/publishing/screenshots/screenshot_zoom.png" width="30%"> <img src="public/publishing/screenshots/screenshot_level2.png" width="30%">
+<img src="public/publishing/screenshots/screenshot_menu.png" width="30%"> <img src="public/publishing/screenshots/screenshot_level1.png" width="30%"> <img src="public/publishing/screenshots/screenshot_zoom.png" width="30%">
 
 </div>
 
