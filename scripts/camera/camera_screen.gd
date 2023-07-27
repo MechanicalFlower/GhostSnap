@@ -9,6 +9,6 @@ func _ready():
 
 func redacted(state: bool):
 	visible = state
-	
+
 	# hack
 	screen.position.x = -0.5
