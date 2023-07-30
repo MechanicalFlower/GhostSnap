@@ -21,7 +21,7 @@ mkflower:
 
 	touch .mkflower/.gitignore
 	echo '*' >> .mkflower/.gitignore
-	
+
 	touch .mkflower/.gdignore
 
 install_godot: mkflower

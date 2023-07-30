@@ -48,6 +48,7 @@ repos:
       (?x)^(
           LICENSES/|
           public/|
+          Makefile|
           CONTRIBUTING.md|
           CREDITS.md|
           LICENSE.md|
