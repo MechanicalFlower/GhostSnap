@@ -17,7 +17,7 @@ mkflower:
 	mkdir -p .mkflower
 	mkdir -p .mkflower/build
 	mkdir -p .mkflower/bin
-	mkdir -p .mkflower/tmp
+	mkdir -p .mkflower/cache
 
 	touch .mkflower/.gitignore
 	echo '*' >> .mkflower/.gitignore
@@ -25,18 +25,18 @@ mkflower:
 	touch .mkflower/.gdignore
 
 install_godot: mkflower
-	# curl -X GET "https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/SHA512-SUMS.txt" --output .mkflower/tmp/SHA512-SUMS.txt
-	# if [ ! -f ".mkflower/tmp/${GODOT_FILENAME}" ] || [ "$(cat .mkflower/tmp/SHA512-SUMS.txt | grep ${GODOT_FILENAME} | awk -F'[[:space:]]+' '{print $1}')" != "$(sha256sum .mkflower/tmp/${GODOT_FILENAME})" ]; then \
-	curl -X GET "https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}${SUBDIR}/${GODOT_FILENAME}.zip" --output .mkflower/tmp/${GODOT_FILENAME}.zip; \
-	unzip .mkflower/tmp/${GODOT_FILENAME}.zip -d .mkflower/tmp/; \
-	cp .mkflower/tmp/${GODOT_FILENAME} .mkflower/bin/${GODOT_FILENAME};
+	# curl -X GET "https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/SHA512-SUMS.txt" --output .mkflower/cache/SHA512-SUMS.txt
+	# if [ ! -f ".mkflower/cache/${GODOT_FILENAME}" ] || [ "$(cat .mkflower/cache/SHA512-SUMS.txt | grep ${GODOT_FILENAME} | awk -F'[[:space:]]+' '{print $1}')" != "$(sha256sum .mkflower/cache/${GODOT_FILENAME})" ]; then \
+	curl -X GET "https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}${SUBDIR}/${GODOT_FILENAME}.zip" --output .mkflower/cache/${GODOT_FILENAME}.zip; \
+	unzip .mkflower/cache/${GODOT_FILENAME}.zip -d .mkflower/cache/; \
+	cp .mkflower/cache/${GODOT_FILENAME} .mkflower/bin/${GODOT_FILENAME};
 	# fi
 
 install_templates: mkflower
-	curl -X GET "https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}${SUBDIR}/${GODOT_TEMPLATE}" --output .mkflower/tmp/${GODOT_TEMPLATE}; \
-	unzip .mkflower/tmp/${GODOT_TEMPLATE} -d .mkflower/tmp/; \
+	curl -X GET "https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}${SUBDIR}/${GODOT_TEMPLATE}" --output .mkflower/cache/${GODOT_TEMPLATE}; \
+	unzip .mkflower/cache/${GODOT_TEMPLATE} -d .mkflower/cache/; \
 	mkdir -p ~/.local/share/godot/export_templates/${GODOT_VERSION}.${RELEASE_NAME}; \
-	cp .mkflower/tmp/templates/* ~/.local/share/godot/export_templates/${GODOT_VERSION}.${RELEASE_NAME};
+	cp .mkflower/cache/templates/* ~/.local/share/godot/export_templates/${GODOT_VERSION}.${RELEASE_NAME};
 
 install_addons:
 	.mkflower/bin/${GODOT_FILENAME} --headless --script plug.gd install || true
@@ -46,8 +46,21 @@ import_resources:
 	# timeout 60 .mkflower/bin/${GODOT_FILENAME} --editor || true
 	# .mkflower/bin/${GODOT_FILENAME} --headless --quit --editor
 
-export_release:
-	.mkflower/bin/${GODOT_FILENAME} --export-release "Linux/X11" --headless .mkflower/build/GhostSnap.x86_64
+export_release_linux:
+	mkdir -p .mkflower/build/linux
+	.mkflower/bin/${GODOT_FILENAME} --export-release "Linux/X11" --headless .mkflower/build/linux/GhostSnap.x86_64
+	(cd .mkflower/build/linux && zip GhostSnap-linux-0.1.0.zip -r .)
+	mv .mkflower/build/linux/GhostSnap-linux-0.1.0.zip .mkflower/build/GhostSnap-linux-0.1.0.zip
+
+export_release_windows:
+	mkdir -p .mkflower/build/windows
+	.mkflower/bin/${GODOT_FILENAME} --export-release "Windows Desktop" --headless .mkflower/build/windows/GhostSnap.exe
+	(cd .mkflower/build/windows && zip GhostSnap-windows-0.1.0.zip -r .)
+	mv .mkflower/build/windows/GhostSnap-windows-0.1.0.zip .mkflower/build/GhostSnap-windows-0.1.0.zip
+
+export_release_mac:
+	mkdir -p .mkflower/build/mac
+	.mkflower/bin/${GODOT_FILENAME} --export-release "macOS" --headless .mkflower/build/GhostSnap-mac-0.1.0.zip
 
 editor:
 	.mkflower/bin/${GODOT_FILENAME} --editor
@@ -73,7 +86,8 @@ clean_plug:
 #############
 
 clean: clean_mkflower clean_godot clean_plug
-build: clean_godot clean_plug install_addons import_resources export_release
+build: clean_godot clean_plug install_addons import_resources export_release_linux
 run: build run_release
 
-ci_build: clean install_godot install_templates install_addons import_resources export_release
+export_release_all: export_release_linux export_release_mac export_release_windows
+ci_build: clean install_godot install_templates install_addons import_resources export_release_all
