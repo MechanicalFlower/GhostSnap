@@ -113,10 +113,6 @@ interact={
 ]
 }
 
-[internationalization]
-
-locale/translations=PackedStringArray("res://assets/i18n/locale.fr.translation")
-
 [layer_names]
 
 3d_render/layer_1="Props"
