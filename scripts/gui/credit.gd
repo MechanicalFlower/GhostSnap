@@ -53,7 +53,7 @@ func _ready():
 	var num_image: int = len(CreditManager._textures)
 
 	for i in range(0, credit_count):
-		var j: int = floor(lerp(0, num_image, i / credit_count))
+		var j: int = roundi(lerp(0, num_image, i / float(credit_count)))
 
 		var template: Node
 		if left:
@@ -66,7 +66,7 @@ func _ready():
 		var label: Label = template.get_node("Label")
 		label.set_text(text)
 
-		var texture = CreditManager._textures[j]
+		var texture: ImageTexture = CreditManager._textures[j]
 		var tex_rect: TextureRect = template.get_node("TextureRect")
 		tex_rect.set_texture(texture)
 

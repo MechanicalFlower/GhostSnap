@@ -9,6 +9,9 @@ GODOT_PLATFORM=linux.x86_64
 GODOT_FILENAME=Godot_v${GODOT_VERSION}-${RELEASE_NAME}_${GODOT_PLATFORM}
 GODOT_TEMPLATE=Godot_v${GODOT_VERSION}-${RELEASE_NAME}_export_templates.tpz
 
+GAME_NAME=GhostSnap
+GAME_VERSION=v0.1.0
+
 #############
 # Commands  #
 #############
@@ -48,19 +51,19 @@ import_resources:
 
 export_release_linux:
 	mkdir -p .mkflower/build/linux
-	.mkflower/bin/${GODOT_FILENAME} --export-release "Linux/X11" --headless .mkflower/build/linux/GhostSnap.x86_64
-	(cd .mkflower/build/linux && zip GhostSnap-linux-0.1.0.zip -r .)
-	mv .mkflower/build/linux/GhostSnap-linux-0.1.0.zip .mkflower/build/GhostSnap-linux-0.1.0.zip
+	.mkflower/bin/${GODOT_FILENAME} --export-release "Linux/X11" --headless .mkflower/build/linux/${GAME_NAME}.x86_64
+	(cd .mkflower/build/linux && zip ${GAME_NAME}-linux-${GAME_VERSION}.zip -r .)
+	mv .mkflower/build/linux/${GAME_NAME}-linux-${GAME_VERSION}.zip .mkflower/build/${GAME_NAME}-linux-${GAME_VERSION}.zip
 
 export_release_windows:
 	mkdir -p .mkflower/build/windows
-	.mkflower/bin/${GODOT_FILENAME} --export-release "Windows Desktop" --headless .mkflower/build/windows/GhostSnap.exe
-	(cd .mkflower/build/windows && zip GhostSnap-windows-0.1.0.zip -r .)
-	mv .mkflower/build/windows/GhostSnap-windows-0.1.0.zip .mkflower/build/GhostSnap-windows-0.1.0.zip
+	.mkflower/bin/${GODOT_FILENAME} --export-release "Windows Desktop" --headless .mkflower/build/windows/${GAME_NAME}.exe
+	(cd .mkflower/build/windows && zip ${GAME_NAME}-windows-${GAME_VERSION}.zip -r .)
+	mv .mkflower/build/windows/${GAME_NAME}-windows-${GAME_VERSION}.zip .mkflower/build/${GAME_NAME}-windows-${GAME_VERSION}.zip
 
 export_release_mac:
 	mkdir -p .mkflower/build/mac
-	.mkflower/bin/${GODOT_FILENAME} --export-release "macOS" --headless .mkflower/build/GhostSnap-mac-0.1.0.zip
+	.mkflower/bin/${GODOT_FILENAME} --export-release "macOS" --headless .mkflower/build/${GAME_NAME}-mac-${GAME_VERSION}.zip
 
 editor:
 	.mkflower/bin/${GODOT_FILENAME} --editor
@@ -69,7 +72,7 @@ godot:
 	.mkflower/bin/${GODOT_FILENAME} $(ARGS)
 
 run_release:
-	.mkflower/build/GhostSnap.x86_64
+	.mkflower/build/${GAME_NAME}.x86_64
 
 clean_mkflower:
 	rm -rf .mkflower
@@ -89,5 +92,5 @@ clean: clean_mkflower clean_godot clean_plug
 build: clean_godot clean_plug install_addons import_resources export_release_linux
 run: build run_release
 
-export_release_all: export_release_linux export_release_mac export_release_windows
+export_release_all: export_release_linux export_release_mac
 ci_build: clean install_godot install_templates install_addons import_resources export_release_all
