@@ -182,7 +182,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106275, 0.730732)
 cull_mask = 1048568
 
 [node name="GhostsMesh" type="MeshInstance3D" parent="SubViewport"]
-transform = Transform3D(0.994823, 0, -0.101701, 0, 1, 0, 0.101701, 0, 0.994823, 0, 0.14, 0)
+transform = Transform3D(-0.844291, 0, 0.535896, 0, 1, 0, -0.535896, 0, -0.844291, 0, 0.14, 0)
 layers = 8
 mesh = SubResource("ArrayMesh_4d0qw")
 script = ExtResource("7_7p6ib")
