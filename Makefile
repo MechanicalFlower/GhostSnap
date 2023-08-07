@@ -57,7 +57,7 @@ export_release_linux:
 
 export_release_windows:
 	mkdir -p .mkflower/build/windows
-	.mkflower/bin/${GODOT_FILENAME} --export-release "Windows Desktop" .mkflower/build/windows/${GAME_NAME}.exe
+	.mkflower/bin/${GODOT_FILENAME} --export-release "Windows Desktop" --headless .mkflower/build/windows/${GAME_NAME}.exe
 	(cd .mkflower/build/windows && zip ${GAME_NAME}-windows-v${GAME_VERSION}.zip -r .)
 	mv .mkflower/build/windows/${GAME_NAME}-windows-v${GAME_VERSION}.zip .mkflower/build/${GAME_NAME}-windows-v${GAME_VERSION}.zip
 
