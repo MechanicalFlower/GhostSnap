@@ -3,8 +3,8 @@
 # Updates the game version for export (based on the file .version)
 #
 
-game_version=$(cat .version) 
-datetime=$(date '+%Y%m%d') 
+game_version=$(cat .version)
+datetime=$(date '+%Y%m%d')
 
 sed -i "s,application/file_version=.*$,application/file_version=\"${game_version}.${datetime}\",g" ./export_presets.cfg
 sed -i "s,application/product_version=.*$,application/product_version=\"${game_version}.${datetime}\",g" ./export_presets.cfg
