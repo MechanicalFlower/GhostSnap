@@ -19,7 +19,7 @@ ao_texture = ExtResource("2_tfgtc")
 uv1_scale = Vector3(100, 100, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_li8ls"]
-size = Vector3(60, 0.5, 60)
+size = Vector3(75, 0.5, 75)
 
 [node name="Floor" type="MeshInstance3D"]
 mesh = SubResource("BoxMesh_srxwf")
