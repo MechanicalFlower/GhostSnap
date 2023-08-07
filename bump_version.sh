@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/bash
 #
 # Updates the game version for export (based on the file .version)
 #
