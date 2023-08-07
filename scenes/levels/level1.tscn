@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="8_l5nh8"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="9_ikont"]
 
-[sub_resource type="Resource" id="Resource_snejh"]
+[sub_resource type="Resource" id="Resource_3mm5v"]
 script = ExtResource("5_pjw3r")
 amount = 24
 enabled = true
@@ -19,7 +19,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_ia4wt"]
+[sub_resource type="Resource" id="Resource_523f5"]
 script = ExtResource("6_xulgp")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 10.0
@@ -35,9 +35,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_wxsd4"]
+[sub_resource type="Resource" id="Resource_vhtjt"]
 script = ExtResource("4_r5i1l")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_snejh"), SubResource("Resource_ia4wt")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_3mm5v"), SubResource("Resource_523f5")])
 
 [sub_resource type="Resource" id="Resource_t3js4"]
 script = ExtResource("9_ikont")
@@ -52,7 +52,7 @@ size = Vector3(35, 2, 35)
 [node name="Ghosts" type="Node3D" parent="."]
 script = ExtResource("3_ri2sm")
 render_mode = 1
-modifier_stack = SubResource("Resource_wxsd4")
+modifier_stack = SubResource("Resource_vhtjt")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
