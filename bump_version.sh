@@ -4,7 +4,7 @@
 #
 
 game_version=$(cat .version) 
-datetime=$(printf "%(%Y%m%d)T\n" -1) 
+datetime=$(date '+%Y%m%d') 
 
 sed -i "s,application/file_version=.*$,application/file_version=\"${game_version}.${datetime}\",g" ./export_presets.cfg
 sed -i "s,application/product_version=.*$,application/product_version=\"${game_version}.${datetime}\",g" ./export_presets.cfg
