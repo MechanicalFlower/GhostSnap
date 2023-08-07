@@ -72,7 +72,7 @@ godot:
 	.mkflower/bin/${GODOT_FILENAME} $(ARGS)
 
 run_release:
-	.mkflower/build/${GAME_NAME}.x86_64
+	.mkflower/build/linux/${GAME_NAME}.x86_64
 
 clean_mkflower:
 	rm -rf .mkflower
