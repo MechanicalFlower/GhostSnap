@@ -46,6 +46,7 @@ repos:
     files: '[^a-z0-9._/-]'
     exclude: |
       (?x)^(
+          .reuse/|
           LICENSES/|
           public/|
           Makefile|
