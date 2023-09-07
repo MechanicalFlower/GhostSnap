@@ -7,6 +7,9 @@
 
 A snap minigame, made with [Godot Engine](https://godotengine.org/), for the [A Game By Its Cover](https://itch.io/jam/a-game-by-its-cover-2023) Game Jam 2023.
 
+<a href="https://github.com/mechanicalflower/GhostSnap/releases/" target="_blank"><img src="public/publishing/store/github.webp" alt="Download on  Github" height="40px" ></a>
+<a href="https://mechanical-flower.itch.io/ghost-snap" target="_blank"><img src="public/publishing/store/itchio.webp" alt="Download on  itch.io" height="40px" ></a>
+
 </div>
 
 ## About
