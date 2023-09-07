@@ -53,7 +53,7 @@ jobs:
       - name: Upload artifact
         uses: ./.github/actions/upload-artifact
         with:
-          name: GhostSnap-${{ matrix.platform }}-v${{ env.version }}
+          name: GhostSnap-${{ matrix.platform }}-v${{ env.game_version }}
           path: build/${{ matrix.platform }}
 
       # Installing rsync is needed in order to deploy to GitHub Pages. Without it, the build will fail.
