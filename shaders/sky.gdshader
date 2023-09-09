@@ -31,9 +31,9 @@ uniform float moon_blur : hint_range(0.01, 10.0) = 0.1;
 group_uniforms clouds;
 // Replaced by noise functions, unncomment if you want to use graphical textures
 //	uniform sampler2D clouds_top_texture : filter_linear_mipmap,
-//hint_default_black; 	uniform sampler2D clouds_middle_texture :
-//filter_linear_mipmap, hint_default_black; 	uniform sampler2D
-//clouds_bottom_texture : filter_linear_mipmap, hint_default_black;
+// hint_default_black; 	uniform sampler2D clouds_middle_texture :
+// filter_linear_mipmap, hint_default_black; 	uniform sampler2D
+// clouds_bottom_texture : filter_linear_mipmap, hint_default_black;
 uniform vec3 clouds_edge_color : source_color = vec3(0.8, 0.8, 0.98);
 uniform vec3 clouds_top_color : source_color = vec3(1.0, 1.0, 1.00);
 uniform vec3 clouds_middle_color : source_color = vec3(0.92, 0.92, 0.98);
@@ -272,14 +272,14 @@ void sky() {
         (_sky_uv + _clouds_movement) * clouds_scale, 0, 0.5);
     _clouds_movement =
         vec2(_sin_x * 0.97, _cos_y * 1.07) * _clouds_speed * 0.89;
-    //		float _noise_middle = texture( clouds_middle_texture, ( _sky_uv +
-    //_clouds_movement ) * clouds_scale ).r;
+    //		float _noise_middle = texture( clouds_middle_texture, ( _sky_uv
+    //+ _clouds_movement ) * clouds_scale ).r;
     float _noise_middle = gen_fractal_ping_pong(
         (_sky_uv + _clouds_movement) * clouds_scale, 1, 0.75);
     _clouds_movement =
         vec2(_sin_x * 1.01, _cos_y * 0.89) * _clouds_speed * 0.79;
-    //		float _noise_bottom = texture( clouds_bottom_texture, ( _sky_uv +
-    //_clouds_movement ) * clouds_scale ).r;
+    //		float _noise_bottom = texture( clouds_bottom_texture, ( _sky_uv
+    //+ _clouds_movement ) * clouds_scale ).r;
     float _noise_bottom = gen_fractal_ping_pong(
         (_sky_uv + _clouds_movement) * clouds_scale, 2, 1.0);
     // Smoothstep with the addition of a noise value from a lower level gives a
