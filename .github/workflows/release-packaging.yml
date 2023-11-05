@@ -1,71 +1,90 @@
-
 name: Release Packaging
 
 on:
   push:
-    branches: [main]
   workflow_dispatch:
 
+env:
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+
 jobs:
-  release-packaging:
+  check:
     runs-on: ubuntu-22.04
     timeout-minutes: 30
 
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - platform: windows
-            output: GhostSnap.exe
-            preset: Windows Desktop
-
-          - platform: linux
-            output: GhostSnap.x86_64
-            preset: Linux/X11
-
-          - platform: web
-            output: index.html
-            preset: Web
-
-          - platform: mac
-            output: GhostSnap.zip
-            preset: macOS
-
-    name: ${{ matrix.preset }} Export
     steps:
       - uses: actions/checkout@v4
+      - uses: extractions/setup-just@v1
 
-      - name: Setup Versions Vars
+      - name: Load dotenv
+        run: just ci-load-dotenv
+
+      - name: Check
+        run: just fmt
+
+      - name: Ensure version is equal to tag
+        if: startsWith(github.ref, 'refs/tags/')
         run: |
-          echo "game_version=$(cat .version)" >> $GITHUB_ENV
-          echo "godot_version=$(cat .godot_version)" >> $GITHUB_ENV
-          ./bump_version.sh
+          [ "${{ env.game_version }}" == "${{ env.BRANCH_NAME }}" ] || exit 2
 
-      - name: Export GhostSnap
-        uses: ./.github/actions/export-game
-        with:
-          platform: ${{ matrix.platform }}
-          output: ${{ matrix.output }}
-          preset: ${{ matrix.preset }}
-          version: ${{ env.game_version }}
-          godot_version: ${{ env.godot_version }}
+  build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    needs: [check]
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: extractions/setup-just@v1
+
+      - name: Load dotenv
+        run: just ci-load-dotenv
+
+      - name: Export
+        run: just export
 
       - name: Upload artifact
-        uses: ./.github/actions/upload-artifact
+        uses: actions/upload-artifact@v3
         with:
-          name: GhostSnap-${{ matrix.platform }}-v${{ env.game_version }}
-          path: build/${{ matrix.platform }}
+          name: ${{ env.game_name }}-v${{ env.game_version }}
+          path: dist/*
+          retention-days: 1
 
-      # Installing rsync is needed in order to deploy to GitHub Pages. Without it, the build will fail.
-      - name: Install rsync
-        if: ${{ matrix.platform == 'web' }}
-        run: |
-          apt-get update && apt-get install -y rsync
+  publish:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    needs: [build]
 
-      - name: Deploy to GitHub Pages
-        if: ${{ matrix.platform == 'web' }}
-        uses: JamesIves/github-pages-deploy-action@v4
+    if: startsWith(github.ref, 'refs/tags/')
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: extractions/setup-just@v1
+
+      - name: Load dotenv
+        run: just ci-load-dotenv
+
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: gh-pages # The branch the action should deploy to.
-          folder: build/web # The folder the action should deploy.
+          workflow: ${{ github.event.workflow_run.workflow_id }}
+          name: ${{ env.game_name }}-v${{ env.game_version }}
+          path: dist/
+          skip_unpack: false
+
+      - name: Publish
+        run: just publish
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # # Installing rsync is needed in order to deploy to GitHub Pages. Without it, the build will fail.
+      # - name: Install rsync
+      #   run: |
+      #     apt-get update && apt-get install -y rsync
+      #
+      # - name: Deploy to GitHub Pages
+      #   uses: JamesIves/github-pages-deploy-action@v4
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     branch: gh-pages
+      #     folder: build/web

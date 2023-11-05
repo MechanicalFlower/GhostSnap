@@ -13,30 +13,14 @@ repos:
   - id: end-of-file-fixer       # Checks for ending with a newline
   - id: mixed-line-ending       # Consistent LF or CRLF
   - id: trailing-whitespace     # No trailing whitespace
-- repo: https://github.com/codespell-project/codespell
-  rev: v2.2.5
-  hooks:
-  - id: codespell
 - repo: https://github.com/fsfe/reuse-tool
   rev: v2.0.0
   hooks:
   - id: reuse
-- repo: https://github.com/PyCQA/isort
-  rev: 5.12.0
+- repo: https://github.com/codespell-project/codespell
+  rev: v2.2.5
   hooks:
-  - id: isort
-- repo: https://github.com/PyCQA/bandit
-  rev: 1.7.5
-  hooks:
-  - id: bandit
-- repo: https://github.com/PyCQA/flake8
-  rev: 6.0.0
-  hooks:
-  - id: flake8
-- repo: https://github.com/pre-commit/mirrors-mypy
-  rev: v1.4.1
-  hooks:
-  - id: mypy
+  - id: codespell
 - repo: local
   hooks:
   - id: lower-case-only
@@ -49,8 +33,9 @@ repos:
           .reuse/|
           LICENSES/|
           public/|
-          Makefile|
+          Justfile|
           CONTRIBUTING.md|
+          CHANGELOG.md|
           CREDITS.md|
           LICENSE.md|
           README.md
