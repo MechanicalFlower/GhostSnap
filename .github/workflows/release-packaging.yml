@@ -19,8 +19,13 @@ jobs:
       - name: Load dotenv
         run: just ci-load-dotenv
 
+      # Retry multiple times, sometimes in CI, gdlint raise "file exists"
       - name: Check
-        run: just fmt
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 1
+          max_attempts: 3
+          command: just fmt
 
       - name: Ensure version is equal to tag
         if: startsWith(github.ref, 'refs/tags/')
@@ -43,7 +48,7 @@ jobs:
         run: just export
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.game_name }}-v${{ env.game_version }}
           path: dist/*
