@@ -22,7 +22,7 @@ run/layer_4="Wall"
 
 [audio]
 
-buses/default_bus_layout="res://resources/default_bus_layout.tres"
+buses/default_bus_layout="res://addons/EasyMenus/default_bus_layout.tres"
 
 [autoload]
 
