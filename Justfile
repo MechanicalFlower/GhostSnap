@@ -99,7 +99,9 @@ install-addons:
 # Workaround from https://github.com/godotengine/godot/pull/68461
 # Import game resources
 import-resources:
-    timeout 60 just godot --headless --editor --export-pack null /dev/null || true
+    just godot --headless --export-pack null /dev/null
+    # timeout 60 just godot --editor || true
+    # just godot --headless --quit --editor
 
 # Updates the game version for export
 @bump-version:
