@@ -4,7 +4,7 @@ extends "res://addons/gd-plug/plug.gd"
 func _plugging():
 	plug("godot-extended-libraries/godot-debug-menu", {"commit": "9d36ea23661d095198ff7fcfff2715172f73c983"})
 	plug("KoBeWi/Godot-Universal-Fade", {"commit": "f091514bba652880f81c5bc8809e0ee4498988ea"})
-	plug("HungryProton/scatter", {"commit": "9cbdd801f4ef6c77140e84ed9b0d96df2c6c5bb1"})
+	plug("HungryProton/scatter", {"commit": "6821b63a120f4c003da7e4d6f9ec28658e8337dc"})
 	plug("samclee/EZ-Sfx-and-Music", {"commit": "ac2b77c0336ff6edf6b26aa9342628d2ad63f359"})
 	plug("nisovin/godot-coi-serviceworker", {"commit": "de1be2989eda4c7d77a08b8c56cd94c769181c4e"})
 
