@@ -1,5 +1,7 @@
 #!/usr/bin/env -S just --justfile
 
+# === Settings ===
+
 set dotenv-load := true
 
 export PIP_REQUIRE_VIRTUALENV := "true"
@@ -27,11 +29,26 @@ dist_dir := justfile_directory() / "dist"
 
 # Godot variables
 godot_version := env_var('GODOT_VERSION')
-godot_platform := if arch() == "x86" { "linux.x86_32" } else { if arch() == "x86_64" { "linux.x86_64" } else { "" } }
+godot_platform := if arch() == "x86" {
+ "linux.x86_32"
+} else {
+  if arch() == "x86_64" {
+    "linux.x86_64"
+  } else {
+    if arch() == "arm" {
+      "linux.arm32"
+    } else {
+      if arch() == "aarch64" {
+        "linux.arm64"
+      } else { "" }
+    }
+  }
+}
 godot_filename := "Godot_v" + godot_version + "-stable_" + godot_platform
 godot_template := "Godot_v" + godot_version + "-stable_export_templates.tpz"
 godot_bin := bin_dir / godot_filename
 godot_editor_data_dir := "~/.local/share/godot/"
+use_x11_wrapper := if godot_platform =~ "x11*" { env("CI", "false") } else { "false" }
 
 # Game variables
 game_name := env_var('GAME_NAME')
@@ -100,8 +117,6 @@ install-addons:
 # Import game resources
 import-resources:
     just godot --headless --export-pack null /dev/null
-    # timeout 60 just godot --editor || true
-    # just godot --headless --quit --editor
 
 # Updates the game version for export
 @bump-version:
@@ -131,19 +146,19 @@ fmt:
 # Export game on Windows
 export-windows: bump-version install-addons import-resources
     mkdir -p {{ build_dir }}/windows
-    just godot --export-release '"Windows Desktop"' --headless {{ build_dir }}/windows/{{ game_name }}.exe
+    just godot --headless --export-release '"Windows Desktop"' {{ build_dir }}/windows/{{ game_name }}.exe
     (cd {{ build_dir }}/windows && zip {{ game_name }}-windows-v{{ game_version }}.zip -r .)
     mv {{ build_dir }}/windows/{{ game_name }}-windows-v{{ game_version }}.zip {{ dist_dir }}/{{ game_name }}-windows-v{{ game_version }}.zip
     rm -rf {{ build_dir }}/windows
 
 # Export game on MacOS
 export-mac: bump-version install-addons import-resources
-    just godot --export-release "macOS" --headless {{ dist_dir }}/{{ game_name }}-mac-v{{ game_version }}.zip
+    just godot --headless --export-release "macOS" {{ dist_dir }}/{{ game_name }}-mac-v{{ game_version }}.zip
 
 # Export game on Linux
 export-linux: bump-version install-addons import-resources
     mkdir -p {{ build_dir }}/linux
-    just godot --export-release "Linux/X11" --headless {{ build_dir }}/linux/{{ game_name }}.x86_64
+    just godot --headless --export-release "Linux/X11" {{ build_dir }}/linux/{{ game_name }}.x86_64
     (cd {{ build_dir }}/linux && zip {{ game_name }}-linux-v{{ game_version }}.zip -r .)
     mv {{ build_dir }}/linux/{{ game_name }}-linux-v{{ game_version }}.zip {{ dist_dir }}/{{ game_name }}-linux-v{{ game_version }}.zip
     rm -rf {{ build_dir }}/linux
@@ -151,7 +166,7 @@ export-linux: bump-version install-addons import-resources
 # Export game for the web
 export-web: bump-version install-addons import-resources
     mkdir -p {{ build_dir }}/web
-    just godot --export-release "Web" --headless {{ build_dir }}/web/index.html
+    just godot --headless --export-release "Web" {{ build_dir }}/web/index.html
 
 # Export on all platform
 export: export-windows export-mac export-linux
