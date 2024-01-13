@@ -8,17 +8,21 @@
 
 config_version=5
 
+[addons]
+
+universal_fade/patterns_directory="res://addons/UniversalFade/Patterns"
+
 [application]
 
 config/name="GhostSnap"
 run/main_scene="res://scenes/gui/menu.tscn"
-config/features=PackedStringArray("4.1", "Forward Plus")
+config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://assets/icon.svg"
 run/layer_4="Wall"
 
 [audio]
 
-buses/default_bus_layout="res://resources/default_bus_layout.tres"
+buses/default_bus_layout="res://addons/EasyMenus/default_bus_layout.tres"
 
 [autoload]
 
@@ -122,6 +126,7 @@ interact={
 3d_physics/layer_2="Ghosts"
 3d_physics/layer_3="Player"
 3d_physics/layer_4="Walls (block camera effect)"
+3d_physics/layer_5="Bounds (block player)"
 
 [rendering]
 

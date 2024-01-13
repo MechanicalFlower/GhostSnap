@@ -1,5 +1,7 @@
 # Godot-specific ignores
-.godot/
+.godot/*
+!.godot/imported/
+!.godot/global_script_class_cache.cfg
 .import/
 gfxrecon_capture_*
 
