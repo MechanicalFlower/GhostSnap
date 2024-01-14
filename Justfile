@@ -121,7 +121,7 @@ install-butler: makedirs
 # Download Butler if not already done
 [private]
 @check-butler:
-    [ ! -e {{ butler_bin }} ] && just butler || true
+    [ ! -e {{ butler_bin }} ] && just install-butler || true
 
 # === Python ===
 #
@@ -154,9 +154,12 @@ godot *ARGS: check-godot check-templates
 @install-addons:
     [ -f plug.gd ] && just godot --headless --script plug.gd install force || true
 
+# Workaround from https://github.com/godotengine/godot/pull/68461
 # Import game resources
 @import-resources:
-    just godot --editor --headless --quit || true
+    just godot --headless --export-pack null /dev/null
+    # timeout 60 just godot --editor || true
+    # just godot --headless --quit --editor
 
 # Open the Godot editor
 @editor:
