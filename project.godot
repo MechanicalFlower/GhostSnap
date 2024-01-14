@@ -15,6 +15,7 @@ universal_fade/patterns_directory="res://addons/UniversalFade/Patterns"
 [application]
 
 config/name="GhostSnap"
+config/version="0.1.2"
 run/main_scene="res://scenes/gui/menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://assets/icon.svg"
