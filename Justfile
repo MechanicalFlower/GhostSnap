@@ -141,6 +141,10 @@ fmt:
     just venv pip install pre-commit==3.*
     just venv pre-commit run -a
 
+# Generate the CREDTIS.md file
+credits:
+    just venv python ./generate_credits.py
+
 # === Godot ===
 #
 # Recipes around the Godot binary.
@@ -181,12 +185,18 @@ butler *ARGS: check-butler
     sed -i "s,application/version=.*$,application/version=\"{{ game_version }}\",g" ./export_presets.cfg
     sed -i "s,application/short_version=.*$,application/short_version=\"{{ short_version }}\",g" ./export_presets.cfg
 
+    echo "Update version in the project.godot"
+    sed -i "s,config/version=.*$,config/version=\"{{ game_version }}\",g" ./project.godot
+
     echo "Create the override.cfg"
     touch override.cfg
     echo -e '[build_info]\npackage/version="{{ game_version }}"\npackage/build_date="{{ build_date }}"\nsource/commit="{{ commit_hash }}"' > override.cfg
 
+[private]
+pre-export: clean-addons makedirs bump-version install-addons import-resources
+
 # Export game on Windows
-export-windows: makedirs bump-version install-addons import-resources
+export-windows: pre-export
     mkdir -p {{ build_dir }}/windows
     just godot --headless --export-release '"Windows Desktop"' {{ build_dir }}/windows/{{ game_name }}.exe
     (cd {{ build_dir }}/windows && zip {{ game_name }}-windows-v{{ game_version }}.zip -r .)
@@ -194,11 +204,11 @@ export-windows: makedirs bump-version install-addons import-resources
     rm -rf {{ build_dir }}/windows
 
 # Export game on MacOS
-export-mac: makedirs bump-version install-addons import-resources
+export-mac: pre-export
     just godot --headless --export-release "macOS" {{ dist_dir }}/{{ game_name }}-mac-v{{ game_version }}.zip
 
 # Export game on Linux
-export-linux: makedirs bump-version install-addons import-resources
+export-linux: pre-export
     mkdir -p {{ build_dir }}/linux
     just godot --headless --export-release "Linux/X11" {{ build_dir }}/linux/{{ game_name }}.x86_64
     (cd {{ build_dir }}/linux && zip {{ game_name }}-linux-v{{ game_version }}.zip -r .)
@@ -206,7 +216,7 @@ export-linux: makedirs bump-version install-addons import-resources
     rm -rf {{ build_dir }}/linux
 
 # Export game for the web
-export-web: makedirs bump-version install-addons import-resources
+export-web: pre-export
     mkdir -p {{ build_dir }}/web
     just godot --headless --export-release "Web" {{ build_dir }}/web/index.html
 
