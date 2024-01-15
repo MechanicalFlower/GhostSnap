@@ -12,4 +12,4 @@ func _plugging():
 
 	# Patched version
 	plug("florianvazelle/EasyMenus", {"commit": "4d960ef6ab9f51a206e2eb40c2cc0b8f8eced71a"})
-	plug("florianvazelle/scatter", {"commit": "ad0241d3a9d04e07158a43b732c376ad6c5760fe"})
+	plug("florianvazelle/scatter", {"commit": "d1133ab81351907624a8eff48fc064a92ffeb316"})
