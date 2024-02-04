@@ -57,7 +57,6 @@ game_itchio_key := env_var_or_default('GAME_ITCHIO_KEY', "")
 # Build info
 datetime := `date '+%Y%m%d'`
 short_version := replace_regex(game_version, "([0-9]+).([0-9]+).[0-9]+", "$1.$2")
-build_date := `date +'%Y/%m/%d'`
 commit_hash := `git log --pretty=format:"%H" -1`
 
 # Python virtualenv
@@ -71,7 +70,7 @@ butler_platform := if arch() == "x86" { "linux-386" } else { if arch() == "x86_6
 
 # Display all commands
 @default:
-    echo "OS: {{ os() }} - ARCH: {{ arch() }}\n"
+    echo -e "OS: {{ os() }} - ARCH: {{ arch() }}\n"
     just --list
 
 # Create directories
@@ -88,7 +87,7 @@ butler_platform := if arch() == "x86" { "linux-386" } else { if arch() == "x86_6
 # Download Godot
 [private]
 install-godot: makedirs
-    curl -L --silent -X GET "https://github.com/godotengine/godot-builds/releases/download/{{ godot_version }}/{{ godot_filename }}.zip" --output {{ cache_dir }}/{{ godot_filename }}.zip
+    curl -L --progress-bar -X GET "https://github.com/godotengine/godot-builds/releases/download/{{ godot_version }}/{{ godot_filename }}.zip" --output {{ cache_dir }}/{{ godot_filename }}.zip
     unzip -o {{ cache_dir }}/{{ godot_filename }}.zip -d {{ cache_dir }}
     cp {{ cache_dir }}/{{ godot_filename }} {{ godot_bin }}
 
@@ -100,7 +99,7 @@ install-godot: makedirs
 # Download Godot export templates
 [private]
 install-templates: makedirs
-    curl -L --silent -X GET "https://github.com/godotengine/godot-builds/releases/download/{{ godot_version }}/{{ godot_template }}" --output {{ cache_dir }}/{{ godot_template }}
+    curl -L --progress-bar -X GET "https://github.com/godotengine/godot-builds/releases/download/{{ godot_version }}/{{ godot_template }}" --output {{ cache_dir }}/{{ godot_template }}
     unzip -o {{ cache_dir }}/{{ godot_template }} -d {{ cache_dir }}
     mkdir -p {{ godot_templates_dir }}
     cp {{ cache_dir }}/templates/* {{ godot_templates_dir }}
@@ -133,7 +132,7 @@ export PIP_REQUIRE_VIRTUALENV := "true"
 # Python virtualenv wrapper
 [private]
 @venv *ARGS:
-    [ ! -d {{ venv_dir }} ] && python3 -m venv {{ venv_dir }} || true
+    [ ! -d {{ venv_dir }} ] && python3 -m venv {{ venv_dir }} && touch {{ venv_dir }}/.gdignore || true
     . {{ venv_dir }}/bin/activate && {{ ARGS }}
 
 # Run files formatters
@@ -188,10 +187,6 @@ butler *ARGS: check-butler
     echo "Update version in the project.godot"
     sed -i "s,config/version=.*$,config/version=\"{{ game_version }}\",g" ./project.godot
 
-    echo "Create the override.cfg"
-    touch override.cfg
-    echo -e '[build_info]\npackage/version="{{ game_version }}"\npackage/build_date="{{ build_date }}"\nsource/commit="{{ commit_hash }}"' > override.cfg
-
 [private]
 pre-export: clean-addons makedirs bump-version install-addons import-resources
 
@@ -231,7 +226,7 @@ export: export-windows export-mac export-linux
 # Remove game plugins
 clean-addons:
     rm -rf .plugged
-    [ -f plug.gd ] && find addons/ -type d -not -name 'addons' -not -name 'gd-plug' -exec rm -rf {} \; || true
+    [ -f plug.gd ] && (cd addons/ && git clean -f -X -d) || true
 
 # Remove files created by Godot
 clean-resources:

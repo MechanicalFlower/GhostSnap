@@ -16,6 +16,7 @@ data_*/
 .plugged/
 addons/*
 !addons/gd-plug/
+!addons/export-build-info/
 
 # Python-specific ignores
 venv/

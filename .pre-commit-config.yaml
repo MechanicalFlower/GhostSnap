@@ -2,6 +2,8 @@ repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v4.4.0
   hooks:
+  - id: check-added-large-files # Prevent giant files from being committed
+    args: ['--maxkb=1500']
   - id: fix-byte-order-marker   # Prevents weird UTF-8 encoding edge cases
   - id: check-case-conflict     # Check if case-insensitive filesystems would bork
   - id: check-docstring-first   # Check for if docstring was misplaced
@@ -30,8 +32,8 @@ repos:
     exclude: '^addons/gd-plug/'
 - repo: local
   hooks:
-  - id: lower-case-only
-    name: lower case only
+  - id: check-filenames-are-lowercase
+    name: check that filenames are lowercase
     entry: filenames must be lower-case or lower_case only
     language: fail
     files: '[^a-z0-9._/-]'
@@ -39,7 +41,7 @@ repos:
       (?x)^(
           .godot/|
           .reuse/|
-          addons/|
+          addons/gd-plug/|
           CHANGELOG.md|
           CONTRIBUTING.md|
           CREDITS.md|
@@ -49,8 +51,8 @@ repos:
           public/|
           README.md
       )
-  - id: check-shaders
-    name: check shaders
+  - id: format-shaders
+    name: format shaders
     entry: clang-format
     args:
       - --style=llvm
@@ -58,4 +60,4 @@ repos:
       - -i
     language: system
     files: \.gdshader$
-    exclude: ^addons/
+    exclude: ^addons/gd-plug/
