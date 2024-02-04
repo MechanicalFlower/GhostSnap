@@ -4,12 +4,27 @@ extends "res://addons/gd-plug/plug.gd"
 func _plugging():
 	plug(
 		"godot-extended-libraries/godot-debug-menu",
-		{"commit": "9d36ea23661d095198ff7fcfff2715172f73c983"}
+		{"commit": "9d36ea23661d095198ff7fcfff2715172f73c983", "renovate-branch": "master"}
 	)
-	plug("KoBeWi/Godot-Universal-Fade", {"commit": "f091514bba652880f81c5bc8809e0ee4498988ea"})
-	plug("samclee/EZ-Sfx-and-Music", {"commit": "ac2b77c0336ff6edf6b26aa9342628d2ad63f359"})
-	plug("nisovin/godot-coi-serviceworker", {"commit": "de1be2989eda4c7d77a08b8c56cd94c769181c4e"})
+	plug(
+		"KoBeWi/Godot-Universal-Fade",
+		{"commit": "f091514bba652880f81c5bc8809e0ee4498988ea", "renovate-branch": "master"}
+	)
+	plug(
+		"samclee/EZ-Sfx-and-Music",
+		{"commit": "ac2b77c0336ff6edf6b26aa9342628d2ad63f359", "renovate-branch": "main"}
+	)
+	plug(
+		"nisovin/godot-coi-serviceworker",
+		{"commit": "de1be2989eda4c7d77a08b8c56cd94c769181c4e", "renovate-branch": "main"}
+	)
 
 	# Patched version
-	plug("florianvazelle/EasyMenus", {"commit": "4d960ef6ab9f51a206e2eb40c2cc0b8f8eced71a"})
-	plug("florianvazelle/scatter", {"commit": "d1133ab81351907624a8eff48fc064a92ffeb316"})
+	plug(
+		"florianvazelle/EasyMenus",
+		{"commit": "4d960ef6ab9f51a206e2eb40c2cc0b8f8eced71a", "renovate-branch": "master"}
+	)
+	plug(
+		"florianvazelle/scatter",
+		{"commit": "d1133ab81351907624a8eff48fc064a92ffeb316", "renovate-branch": "v4"}
+	)

@@ -33,9 +33,14 @@ DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 MenuTemplateManager="*res://addons/EasyMenus/Nodes/menu_template_manager.tscn"
 CreditManager="*res://scripts/gui/credit_manager.gd"
 
+[custom_options]
+
+build_info/commit="0497abbb45b92e05bd3499739e9110305e88c9aa"
+build_info/date="2024/02/04"
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/proton_scatter/plugin.cfg")
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/export-build-info/plugin.cfg", "res://addons/proton_scatter/plugin.cfg")
 
 [filesystem]
 
