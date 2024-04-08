@@ -26,5 +26,5 @@ func _plugging():
 	)
 	plug(
 		"florianvazelle/scatter",
-		{"commit": "d1133ab81351907624a8eff48fc064a92ffeb316", "renovate-branch": "v4"}
+		{"commit": "02b71c2637687b00d4da4f0ff0f108f6700f1d93", "renovate-branch": "v4"}
 	)
