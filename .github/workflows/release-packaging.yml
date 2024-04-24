@@ -1,8 +1,13 @@
 name: Release Packaging
 
 on:
-  push:
   workflow_dispatch:
+  # Ensure the build works on main
+  push:
+    branches: [main]
+    tags: ['*']
+  # Ensure the build works on each pull request
+  pull_request:
 
 env:
   BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
@@ -120,4 +125,4 @@ jobs:
         run: just ci-publish
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT }}
