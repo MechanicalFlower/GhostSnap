@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: extractions/setup-just@v2
+      - uses: extractions/setup-just@v3
 
       - name: Load dotenv
         run: just ci-load-dotenv
@@ -39,7 +39,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: extractions/setup-just@v2
+      - uses: extractions/setup-just@v3
 
       - name: Load dotenv
         run: just ci-load-dotenv
@@ -71,7 +71,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: extractions/setup-just@v2
+      - uses: extractions/setup-just@v3
 
       - name: Load dotenv
         run: just ci-load-dotenv
@@ -108,7 +108,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: extractions/setup-just@v2
+      - uses: extractions/setup-just@v3
 
       - name: Load dotenv
         run: just ci-load-dotenv
